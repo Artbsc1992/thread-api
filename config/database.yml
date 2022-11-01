@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV["DATABASE_USER"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  host: <%= ENV["DATABASE_HOST"] %>
+
+development:
+  <<: *default
+  database: <%= ENV['POSTGRES_DEV_DB'] %>
+test:
+  <<: *default
+  database: <%= ENV['POSTGRES_TEST_DB'] %>
+#
+production:
+  <<: *default
+  database: bookit_api_prod
+  username: bookit
+  password: <%= ENV["BLOG_DATABASE_PASSWORD"] %>
