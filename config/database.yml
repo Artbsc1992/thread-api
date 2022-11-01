@@ -17,4 +17,4 @@ production:
   <<: *default
   database: bookit_api_prod
   username: bookit
-  password: <%= ENV["BLOG_DATABASE_PASSWORD"] %>
+  password: <%= ENV["BLOG_DATABASE_PASSWORD"] %>
