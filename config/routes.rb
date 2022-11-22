@@ -3,4 +3,19 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  root "daily#index", as: "/"
+
+  resources :users do 
+    resources :friendships do 
+      resources :notifications 
+    end
+    resources :dailies do
+      resources :notifications 
+      resources :comments do 
+        resources :notifications 
+      end
+    end
+  end
+
 end
