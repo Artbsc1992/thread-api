@@ -6,16 +6,17 @@ Rails.application.routes.draw do
 
   root "daily#index", as: "/"
 
-  resources :users do 
-    resources :friendships do 
-      resources :notifications 
-    end
-    resources :dailies do
-      resources :notifications 
-      resources :comments do 
+  defaults format: :json do
+    resources :users do 
+      resources :friendships do 
         resources :notifications 
+      end
+      resources :dailies do
+        resources :notifications 
+        resources :comments do 
+          resources :notifications 
+        end
       end
     end
   end
-
 end

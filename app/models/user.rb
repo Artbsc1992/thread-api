@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 63 }
   validates :bio, length: { maximum: 127 }
-  validates :email, presence: true, length: { maximum: 63 }, uniqueness: true, format { with: URI::MailTo::EMAIL_REGEXP }
-  validates :photo, format { with: URI.regexp }, allow_blank: true
+  validates :email, presence: true, length: { maximum: 63 }, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :photo, format: { with: URI.regexp }, allow_blank: true
+
+  scope :showothers, ->(id) { where("id != ?", id) }
 end
